@@ -10,6 +10,7 @@ import os
 import re
 import sent_email
 import requests
+import util
 
 
 class Login(QWidget):
@@ -19,14 +20,7 @@ class Login(QWidget):
 
     def __init__(self):
         super(Login, self).__init__()
-        self.connect = Connect(
-            host="124.71.228.59",
-            port=3306,
-            user="DB_USER066",
-            passwd="DB_USER066@123",
-            db="user066db",
-            charset="utf8"
-        )
+        self.connect = util.sql_connect()
         self.cwd = os.getcwd()
         self.cursor = self.connect.cursor()
         self.setFixedSize(1000, 1300)
@@ -632,7 +626,7 @@ class Login(QWidget):
             elif 400 < x < 580 and 1100 < y < 1145:
                 QDesktopServices.openUrl(QUrl('https://github.com/SuperKuroko/ECNU-2021-Spring-MySQL-Project'))
             elif 660 < x < 840 and 1100 < y < 1145:
-                QMessageBox.about(self, "关于我们", "2021 ECNU MySQL Final Project\n计算机科学与技术 李雅杰\n计算机科学与技术 王子涵\n计算机科学与技术 吴子靖")
+                QMessageBox.about(self, "关于我们", "2021 ECNU MySQL Final Project")
 
     def paintEvent(self, event):
         qp = QPainter()

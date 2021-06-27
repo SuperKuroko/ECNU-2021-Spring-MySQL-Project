@@ -14,14 +14,7 @@ class Customer(QWidget):
 
     def __init__(self, username):
         super(Customer, self).__init__()
-        self.connect = Connect(
-            host="124.71.228.59",
-            port=3306,
-            user="DB_USER066",
-            passwd="DB_USER066@123",
-            db="user066db",
-            charset="utf8"
-        )
+        self.connect = util.sql_connect()
         self.dialog = None
         self.cursor = self.connect.cursor()
         self.setFixedSize(900, 1400)
@@ -394,14 +387,7 @@ class Customer(QWidget):
         self.show_interface(self.MAIN)
 
     def info_refresh(self):
-        self.connect = Connect(
-            host="124.71.228.59",
-            port=3306,
-            user="DB_USER066",
-            passwd="DB_USER066@123",
-            db="user066db",
-            charset="utf8"
-        )
+        self.connect = util.sql_connect()
         self.cursor = self.connect.cursor()
         sql = "select * from `customer` where username = '%s'" % self.username
         self.cursor.execute(sql)
